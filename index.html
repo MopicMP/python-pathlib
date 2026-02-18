@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Pathlib - Enhanced Documentation | BetterDocs</title>
+    <meta name="description" content="Complete pathlib guide with automation recipes">
+    <meta name="keywords" content="Python Pathlib, documentation, examples, tutorial, better docs">
+    <meta name="robots" content="index, follow">
+    
+    <style>
+        :root {
+            --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+            --fg: #c9d1d9; --fg2: #8b949e; --accent: #58a6ff;
+            --green: #3fb950; --orange: #d29922; --red: #f85149;
+            --border: #30363d; --code-bg: #1a1e24;
+            --radius: 8px; --max-w: 900px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+                         Arial, sans-serif, 'Apple Color Emoji';
+            background: var(--bg); color: var(--fg);
+            line-height: 1.6; min-height: 100vh;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: var(--bg3); padding: 2px 6px; border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre { background: var(--code-bg); border: 1px solid var(--border);
+              border-radius: var(--radius); padding: 16px; overflow-x: auto;
+              line-height: 1.5; margin: 12px 0; }
+        pre code { background: none; padding: 0; font-size: 0.85em; }
+
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+
+        /* Nav */
+        .top-nav { background: var(--bg2); border-bottom: 1px solid var(--border);
+                   padding: 12px 20px; position: sticky; top: 0; z-index: 100; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto;
+                     display: flex; align-items: center; gap: 16px; }
+        .logo { font-weight: 700; font-size: 1.1em; color: var(--green); }
+        .logo:hover { text-decoration: none; }
+        .nav-title { color: var(--fg2); flex: 1; }
+        .nav-links { display: flex; gap: 16px; font-size: 0.9em; }
+
+        /* Header */
+        .site-header { padding: 40px 0 30px; text-align: center; }
+        .site-header h1 { font-size: 2em; margin-bottom: 12px; }
+        .lead { color: var(--fg2); font-size: 1.1em; max-width: 600px; margin: 0 auto 16px; }
+        .stats { color: var(--fg2); font-size: 0.9em; margin-bottom: 20px; }
+
+        /* Search */
+        .search-box { max-width: 400px; margin: 0 auto; }
+        .search-box input {
+            width: 100%; padding: 10px 16px; font-size: 1em;
+            background: var(--bg3); color: var(--fg); border: 1px solid var(--border);
+            border-radius: var(--radius); outline: none;
+        }
+        .search-box input:focus { border-color: var(--accent); }
+
+        /* Symbol grid */
+        .symbols-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                        gap: 12px; padding: 20px 0 40px; }
+        .symbol-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 16px;
+            transition: border-color 0.2s, transform 0.2s;
+            display: block; color: var(--fg);
+        }
+        .symbol-card:hover { border-color: var(--accent); transform: translateY(-2px);
+                             text-decoration: none; }
+        .symbol-name { font-weight: 600; margin-bottom: 6px; }
+        .symbol-desc { color: var(--fg2); font-size: 0.85em; margin-bottom: 6px; }
+        .symbol-meta { color: var(--green); font-size: 0.8em; }
+
+        /* Doc Page */
+        .doc-header { padding: 30px 0 20px; border-bottom: 1px solid var(--border);
+                      margin-bottom: 24px; }
+        .breadcrumb { font-size: 0.85em; color: var(--fg2); margin-bottom: 12px; }
+        .breadcrumb .sep { margin: 0 6px; }
+        .doc-header h1 { font-size: 1.8em; }
+        .doc-header h1 code { font-size: 1em; background: none; padding: 0; }
+        .signature { margin-top: 8px; }
+        .signature code { font-size: 1em; color: var(--green); background: var(--bg3);
+                          padding: 6px 12px; display: inline-block; border-radius: var(--radius); }
+
+        section { margin-bottom: 32px; }
+        section h2 { font-size: 1.3em; margin-bottom: 12px;
+                     padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+        .subtitle { color: var(--fg2); margin-bottom: 16px; }
+        .meta { margin-top: 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .badge { background: var(--bg3); padding: 4px 10px; border-radius: 12px;
+                 font-size: 0.8em; color: var(--fg2); }
+        .official-link { font-size: 0.85em; }
+
+        /* Examples */
+        .example-block { margin-bottom: 20px; border: 1px solid var(--border);
+                         border-radius: var(--radius); overflow: hidden; }
+        .example-header { background: var(--bg3); padding: 8px 12px;
+                          display: flex; align-items: center; gap: 8px;
+                          font-size: 0.85em; color: var(--fg2); }
+        .example-num { font-weight: 600; color: var(--accent); }
+        .example-header a { font-size: 0.85em; }
+        .copy-btn { margin-left: auto; background: var(--bg); color: var(--fg2);
+                    border: 1px solid var(--border); border-radius: 4px;
+                    padding: 2px 8px; cursor: pointer; font-size: 0.8em; }
+        .copy-btn:hover { color: var(--fg); border-color: var(--accent); }
+        .no-examples { color: var(--fg2); font-style: italic; }
+
+        /* Related */
+        .related-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .related-link { background: var(--bg2); border: 1px solid var(--border);
+                        padding: 6px 12px; border-radius: var(--radius);
+                        font-size: 0.85em; }
+        .related-link:hover { border-color: var(--accent); text-decoration: none; }
+
+        /* CTA */
+        .course-cta { background: linear-gradient(135deg, #1a3a2a, #162230);
+                      border: 1px solid var(--green); border-radius: var(--radius);
+                      padding: 32px; margin: 40px 0; text-align: center; }
+        .cta-inner h3 { color: var(--green); font-size: 1.3em; margin-bottom: 8px; }
+        .cta-inner p { color: var(--fg2); margin-bottom: 16px; }
+        .cta-button { display: inline-block; background: var(--green); color: #000;
+                      font-weight: 700; padding: 12px 32px; border-radius: var(--radius);
+                      font-size: 1.05em; transition: opacity 0.2s; }
+        .cta-button:hover { opacity: 0.9; text-decoration: none; }
+        .cta-note { font-size: 0.8em; margin-top: 8px; }
+
+        /* Footer */
+        .site-footer { background: var(--bg2); border-top: 1px solid var(--border);
+                       padding: 24px; text-align: center; margin-top: 40px; }
+        .footer-inner p { color: var(--fg2); font-size: 0.85em; margin: 4px 0; }
+        .copyright { font-size: 0.75em; }
+
+        @media (max-width: 600px) {
+            .symbols-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .site-header h1 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">BetterDocs</a>
+            <span class="nav-title">Python Pathlib</span>
+            <div class="nav-links">
+                <a href="index.html">All Functions</a>
+                <a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noopener">Official Docs</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="site-header">
+            <h1>BetterDocs: Python Pathlib</h1>
+            <p class="lead">Complete pathlib guide with automation recipes</p>
+            <p class="stats">32 documented symbols with real-world code examples</p>
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search functions..." autocomplete="off">
+            </div>
+        </header>
+        <div class="symbols-grid" id="symbolsGrid">
+
+            <a href="path.html" class="symbol-card">
+                <div class="symbol-name"><code>Path</code></div>
+                <div class="symbol-desc">Documentation for Path.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-cwd.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.cwd</code></div>
+                <div class="symbol-desc">Documentation for Path.cwd.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-home.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.home</code></div>
+                <div class="symbol-desc">Documentation for Path.home.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-exists.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.exists</code></div>
+                <div class="symbol-desc">Documentation for Path.exists.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-is-file.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.is_file</code></div>
+                <div class="symbol-desc">Documentation for Path.is_file.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-is-dir.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.is_dir</code></div>
+                <div class="symbol-desc">Documentation for Path.is_dir.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-mkdir.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.mkdir</code></div>
+                <div class="symbol-desc">Documentation for Path.mkdir.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-rmdir.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.rmdir</code></div>
+                <div class="symbol-desc">Documentation for Path.rmdir.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-unlink.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.unlink</code></div>
+                <div class="symbol-desc">Documentation for Path.unlink.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-rename.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.rename</code></div>
+                <div class="symbol-desc">Documentation for Path.rename.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-replace.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.replace</code></div>
+                <div class="symbol-desc">Documentation for Path.replace.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-read-text.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.read_text</code></div>
+                <div class="symbol-desc">Documentation for Path.read_text.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-write-text.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.write_text</code></div>
+                <div class="symbol-desc">Documentation for Path.write_text.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-read-bytes.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.read_bytes</code></div>
+                <div class="symbol-desc">Documentation for Path.read_bytes.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-write-bytes.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.write_bytes</code></div>
+                <div class="symbol-desc">Documentation for Path.write_bytes.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-iterdir.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.iterdir</code></div>
+                <div class="symbol-desc">Documentation for Path.iterdir.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-glob.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.glob</code></div>
+                <div class="symbol-desc">Documentation for Path.glob.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-rglob.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.rglob</code></div>
+                <div class="symbol-desc">Documentation for Path.rglob.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-stat.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.stat</code></div>
+                <div class="symbol-desc">Documentation for Path.stat.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-resolve.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.resolve</code></div>
+                <div class="symbol-desc">Documentation for Path.resolve.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-parent.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.parent</code></div>
+                <div class="symbol-desc">Documentation for Path.parent.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-name.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.name</code></div>
+                <div class="symbol-desc">Documentation for Path.name.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-stem.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.stem</code></div>
+                <div class="symbol-desc">Documentation for Path.stem.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-suffix.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.suffix</code></div>
+                <div class="symbol-desc">Documentation for Path.suffix.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-parts.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.parts</code></div>
+                <div class="symbol-desc">Documentation for Path.parts.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-joinpath.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.joinpath</code></div>
+                <div class="symbol-desc">Documentation for Path.joinpath.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-with-suffix.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.with_suffix</code></div>
+                <div class="symbol-desc">Documentation for Path.with_suffix.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-with-name.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.with_name</code></div>
+                <div class="symbol-desc">Documentation for Path.with_name.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-touch.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.touch</code></div>
+                <div class="symbol-desc">Documentation for Path.touch.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="path-open.html" class="symbol-card">
+                <div class="symbol-name"><code>Path.open</code></div>
+                <div class="symbol-desc">Open file and return a corresponding file object.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="purepath.html" class="symbol-card">
+                <div class="symbol-name"><code>PurePath</code></div>
+                <div class="symbol-desc">Documentation for PurePath.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+            <a href="purewindowspath.html" class="symbol-card">
+                <div class="symbol-name"><code>PureWindowsPath</code></div>
+                <div class="symbol-desc">Documentation for PureWindowsPath.</div>
+                <div class="symbol-meta">2 examples</div>
+            </a>
+
+        </div>
+
+        
+        <aside class="course-cta">
+            <div class="cta-inner">
+                <h3>Want to master Python Pathlib?</h3>
+                <p>Our comprehensive course <strong>Python Everyday Automation</strong> covers everything from basics to advanced patterns with hands-on projects.</p>
+                <a href="https://gumroad.com/l/python-everyday-automation" class="cta-button" target="_blank" rel="noopener">
+                    Get the Full Course
+                </a>
+                <p class="cta-note">Join hundreds of students who leveled up their skills</p>
+            </div>
+        </aside>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>BetterDocs is an independent documentation project.</p>
+            <p>Learn more at <a href="https://gumroad.com/l/python-everyday-automation" target="_blank" rel="noopener">Python Everyday Automation</a></p>
+            <p class="copyright">&copy; 2026 BetterDocs. Not affiliated with the official project.</p>
+        </div>
+    </footer>
+    
+    <script>
+    document.getElementById('search').addEventListener('input', function(e) {
+        const q = e.target.value.toLowerCase();
+        document.querySelectorAll('.symbol-card').forEach(card => {
+            const name = card.querySelector('.symbol-name').textContent.toLowerCase();
+            const desc = card.querySelector('.symbol-desc').textContent.toLowerCase();
+            card.style.display = (name.includes(q) || desc.includes(q)) ? '' : 'none';
+        });
+    });
+    </script>
+    
+    <script>
+    function copyCode(btn) {
+        const code = btn.closest('.example-block').querySelector('code').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+    }
+    </script>
+</body>
+</html>
