@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://MopicMP.github.io/python-pathlib/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-cwd.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-home.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-exists.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-is-file.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-is-dir.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-mkdir.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-rmdir.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-unlink.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-rename.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-replace.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-read-text.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-write-text.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-read-bytes.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-write-bytes.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-iterdir.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-glob.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-rglob.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-stat.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-resolve.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-parent.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-name.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-stem.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-suffix.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-parts.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-joinpath.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-with-suffix.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-with-name.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-touch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/path-open.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/purepath.html</loc><priority>0.8</priority></url>
+  <url><loc>https://MopicMP.github.io/python-pathlib/purewindowspath.html</loc><priority>0.8</priority></url>
+</urlset>
