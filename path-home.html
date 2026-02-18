@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path.home - Python Pathlib | BetterDocs</title>
+    <meta name="description" content="Documentation for Path.home. - Enhanced documentation with real-world code examples.">
+    <meta name="keywords" content="Path.home, Python Pathlib, Python, documentation, examples, tutorial">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://MopicMP.github.io/python-pathlib/path-home.html">
+    
+    <style>
+        :root {
+            --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+            --fg: #c9d1d9; --fg2: #8b949e; --accent: #58a6ff;
+            --green: #3fb950; --orange: #d29922; --red: #f85149;
+            --border: #30363d; --code-bg: #1a1e24;
+            --radius: 8px; --max-w: 900px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+                         Arial, sans-serif, 'Apple Color Emoji';
+            background: var(--bg); color: var(--fg);
+            line-height: 1.6; min-height: 100vh;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: var(--bg3); padding: 2px 6px; border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre { background: var(--code-bg); border: 1px solid var(--border);
+              border-radius: var(--radius); padding: 16px; overflow-x: auto;
+              line-height: 1.5; margin: 12px 0; }
+        pre code { background: none; padding: 0; font-size: 0.85em; }
+
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+
+        /* Nav */
+        .top-nav { background: var(--bg2); border-bottom: 1px solid var(--border);
+                   padding: 12px 20px; position: sticky; top: 0; z-index: 100; }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto;
+                     display: flex; align-items: center; gap: 16px; }
+        .logo { font-weight: 700; font-size: 1.1em; color: var(--green); }
+        .logo:hover { text-decoration: none; }
+        .nav-title { color: var(--fg2); flex: 1; }
+        .nav-links { display: flex; gap: 16px; font-size: 0.9em; }
+
+        /* Header */
+        .site-header { padding: 40px 0 30px; text-align: center; }
+        .site-header h1 { font-size: 2em; margin-bottom: 12px; }
+        .lead { color: var(--fg2); font-size: 1.1em; max-width: 600px; margin: 0 auto 16px; }
+        .stats { color: var(--fg2); font-size: 0.9em; margin-bottom: 20px; }
+
+        /* Search */
+        .search-box { max-width: 400px; margin: 0 auto; }
+        .search-box input {
+            width: 100%; padding: 10px 16px; font-size: 1em;
+            background: var(--bg3); color: var(--fg); border: 1px solid var(--border);
+            border-radius: var(--radius); outline: none;
+        }
+        .search-box input:focus { border-color: var(--accent); }
+
+        /* Symbol grid */
+        .symbols-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                        gap: 12px; padding: 20px 0 40px; }
+        .symbol-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 16px;
+            transition: border-color 0.2s, transform 0.2s;
+            display: block; color: var(--fg);
+        }
+        .symbol-card:hover { border-color: var(--accent); transform: translateY(-2px);
+                             text-decoration: none; }
+        .symbol-name { font-weight: 600; margin-bottom: 6px; }
+        .symbol-desc { color: var(--fg2); font-size: 0.85em; margin-bottom: 6px; }
+        .symbol-meta { color: var(--green); font-size: 0.8em; }
+
+        /* Doc Page */
+        .doc-header { padding: 30px 0 20px; border-bottom: 1px solid var(--border);
+                      margin-bottom: 24px; }
+        .breadcrumb { font-size: 0.85em; color: var(--fg2); margin-bottom: 12px; }
+        .breadcrumb .sep { margin: 0 6px; }
+        .doc-header h1 { font-size: 1.8em; }
+        .doc-header h1 code { font-size: 1em; background: none; padding: 0; }
+        .signature { margin-top: 8px; }
+        .signature code { font-size: 1em; color: var(--green); background: var(--bg3);
+                          padding: 6px 12px; display: inline-block; border-radius: var(--radius); }
+
+        section { margin-bottom: 32px; }
+        section h2 { font-size: 1.3em; margin-bottom: 12px;
+                     padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+        .subtitle { color: var(--fg2); margin-bottom: 16px; }
+        .meta { margin-top: 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .badge { background: var(--bg3); padding: 4px 10px; border-radius: 12px;
+                 font-size: 0.8em; color: var(--fg2); }
+        .official-link { font-size: 0.85em; }
+
+        /* Examples */
+        .example-block { margin-bottom: 20px; border: 1px solid var(--border);
+                         border-radius: var(--radius); overflow: hidden; }
+        .example-header { background: var(--bg3); padding: 8px 12px;
+                          display: flex; align-items: center; gap: 8px;
+                          font-size: 0.85em; color: var(--fg2); }
+        .example-num { font-weight: 600; color: var(--accent); }
+        .example-header a { font-size: 0.85em; }
+        .copy-btn { margin-left: auto; background: var(--bg); color: var(--fg2);
+                    border: 1px solid var(--border); border-radius: 4px;
+                    padding: 2px 8px; cursor: pointer; font-size: 0.8em; }
+        .copy-btn:hover { color: var(--fg); border-color: var(--accent); }
+        .no-examples { color: var(--fg2); font-style: italic; }
+
+        /* Related */
+        .related-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .related-link { background: var(--bg2); border: 1px solid var(--border);
+                        padding: 6px 12px; border-radius: var(--radius);
+                        font-size: 0.85em; }
+        .related-link:hover { border-color: var(--accent); text-decoration: none; }
+
+        /* CTA */
+        .course-cta { background: linear-gradient(135deg, #1a3a2a, #162230);
+                      border: 1px solid var(--green); border-radius: var(--radius);
+                      padding: 32px; margin: 40px 0; text-align: center; }
+        .cta-inner h3 { color: var(--green); font-size: 1.3em; margin-bottom: 8px; }
+        .cta-inner p { color: var(--fg2); margin-bottom: 16px; }
+        .cta-button { display: inline-block; background: var(--green); color: #000;
+                      font-weight: 700; padding: 12px 32px; border-radius: var(--radius);
+                      font-size: 1.05em; transition: opacity 0.2s; }
+        .cta-button:hover { opacity: 0.9; text-decoration: none; }
+        .cta-note { font-size: 0.8em; margin-top: 8px; }
+
+        /* Footer */
+        .site-footer { background: var(--bg2); border-top: 1px solid var(--border);
+                       padding: 24px; text-align: center; margin-top: 40px; }
+        .footer-inner p { color: var(--fg2); font-size: 0.85em; margin: 4px 0; }
+        .copyright { font-size: 0.75em; }
+
+        @media (max-width: 600px) {
+            .symbols-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .site-header h1 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">BetterDocs</a>
+            <span class="nav-title">Python Pathlib</span>
+            <div class="nav-links">
+                <a href="index.html">All Functions</a>
+                <a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noopener">Official Docs</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <article class="doc-page">
+            <header class="doc-header">
+                <div class="breadcrumb">
+                    <a href="index.html">Python Pathlib</a>
+                    <span class="sep">/</span>
+                    <span class="current">Path.home</span>
+                </div>
+                <h1><code>Path.home</code></h1>
+                <div class="signature"><code>Path.home(...)</code></div>
+            </header>
+
+            <section class="description">
+                <h2>Description</h2>
+                <p>Documentation for Path.home.</p>
+                <p class="meta">
+                    <span class="badge">Python</span>
+                    <span class="badge">Python Pathlib</span>
+                    <a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noopener" class="official-link">Official Docs</a>
+                </p>
+            </section>
+
+            <section class="examples">
+                <h2>Real-World Examples</h2>
+                <p class="subtitle">Practical code examples showing how <code>Path.home</code> is used in real projects.</p>
+                
+            <div class="example-block">
+                <div class="example-header">
+                    <span class="example-num">Example 1</span>
+                    <a href="https://github.com/mohitjoer/dodo-bot/blob/3d998f0c65f495dde1a8caa3bbc9650291c60242/bot.py" target="_blank" rel="noopener">From mohitjoer/dodo-bot (bot.py)</a>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code class="language-python"># Flask app for health checks
+app = Flask(__name__)
+bot = None  # Initialize bot variable
+
+@app.route(&#x27;/&#x27;)
+def home():
+    return &quot;🤖 GitHub Discord Bot is running!&quot;
+
+@app.route(&#x27;/health&#x27;)
+def health():
+    &quot;&quot;&quot;Enhanced health check for Render&quot;&quot;&quot;
+    try:
+        bot_status = &quot;offline&quot;
+        guild_count = 0
+        target_guild = &quot;not_connected&quot;
+
+        if bot and hasattr(bot, &#x27;is_ready&#x27;) and bot.is_ready():
+            bot_status = &quot;online&quot;
+            guild_count = len(bot.guilds) if hasattr(bot, &#x27;guilds&#x27;) else 0
+
+            if GUILD_ID and hasattr(bot, &#x27;get_guild&#x27;):
+                target_guild = &quot;connected&quot; if bot.get_guild(GUILD_ID) else &quot;not_found&quot;
+
+        return jsonify({
+            &quot;status&quot;: &quot;healthy&quot;,</code></pre>
+            </div>
+
+            <div class="example-block">
+                <div class="example-header">
+                    <span class="example-num">Example 2</span>
+                    <a href="https://github.com/zscole/gru/blob/67c9b6fff71ccbca275686dd955923ef00da8f1d/src/gru/tools/research.py" target="_blank" rel="noopener">From zscole/gru (src/gru/tools/research.py)</a>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code class="language-python">_orchestrator: Orchestrator | None = None
+_config: Any = None
+
+# Research data storage
+RESEARCH_DIR = Path.home() / &quot;.gru&quot; / &quot;research&quot;
+
+def set_research_dependencies(config: Any, orchestrator: Orchestrator) -&gt; None:
+    &quot;&quot;&quot;Set dependencies for research tools.&quot;&quot;&quot;
+    global _config, _orchestrator
+    _config = config
+    _orchestrator = orchestrator
+    RESEARCH_DIR.mkdir(parents=True, exist_ok=True)
+
+async def _fetch_json(url: str, headers: dict | None = None) -&gt; dict | list | None:
+    &quot;&quot;&quot;Fetch JSON from URL.&quot;&quot;&quot;
+    try:
+        async with aiohttp.ClientSession() as session, session.get(url, headers=headers, timeout=30) as resp:
+            if resp.status == 200:
+                return await resp.json()
+            logger.warning(f&quot;HTTP {resp.status} fetching {url}&quot;)
+            return None
+    except Exception as e:</code></pre>
+            </div>
+            </section>
+
+            
+            <section class="related">
+                <h2>Related Functions</h2>
+                <div class="related-grid">
+                    <a href="path.html" class="related-link"><code>Path</code></a><a href="path-cwd.html" class="related-link"><code>Path.cwd</code></a><a href="path-exists.html" class="related-link"><code>Path.exists</code></a><a href="path-is-file.html" class="related-link"><code>Path.is_file</code></a><a href="path-is-dir.html" class="related-link"><code>Path.is_dir</code></a>
+                </div>
+            </section>
+
+            
+        <aside class="course-cta">
+            <div class="cta-inner">
+                <h3>Want to master Python Pathlib?</h3>
+                <p>Our comprehensive course <strong>Python Everyday Automation</strong> covers everything from basics to advanced patterns with hands-on projects.</p>
+                <a href="https://gumroad.com/l/python-everyday-automation" class="cta-button" target="_blank" rel="noopener">
+                    Get the Full Course
+                </a>
+                <p class="cta-note">Join hundreds of students who leveled up their skills</p>
+            </div>
+        </aside>
+
+        </article>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>BetterDocs is an independent documentation project.</p>
+            <p>Learn more at <a href="https://gumroad.com/l/python-everyday-automation" target="_blank" rel="noopener">Python Everyday Automation</a></p>
+            <p class="copyright">&copy; 2026 BetterDocs. Not affiliated with the official project.</p>
+        </div>
+    </footer>
+    
+    <script>
+    function copyCode(btn) {
+        const code = btn.closest('.example-block').querySelector('code').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+    }
+    </script>
+</body>
+</html>
